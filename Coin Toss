@@ -1,0 +1,53 @@
+import random
+
+# Function to simulate a single coin toss
+def flip_coin():
+    return random.choice(["Heads", "Tails"])
+
+# Function to simulate multiple coin tosses and track results
+def toss_multiple_times(number_of_tosses):
+    heads = 0
+    tails = 0
+    
+    for _ in range(number_of_tosses):
+        result = flip_coin()
+        if result == "Heads":
+            heads += 1
+        else:
+            tails += 1
+    
+    # Calculate percentages of heads and tails
+    heads_percent = (heads / number_of_tosses) * 100
+    tails_percent = (tails / number_of_tosses) * 100
+    
+    return heads, tails, heads_percent, tails_percent
+
+# Main function that interacts with the user
+def coin_flip_game():
+    while True:
+        # Get the number of tosses from the user
+        try:
+            tosses = int(input("Enter how many times you want to toss the coin: "))
+            if tosses <= 0:
+                print("Please enter a positive number of tosses.")
+                continue
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+        
+        # Simulate the tosses
+        heads, tails, heads_percentage, tails_percentage = toss_multiple_times(tosses)
+        
+        # Display the results
+        print(f"\nResults of {tosses} coin tosses:")
+        print(f"Heads: {heads} times ({heads_percentage:.2f}%)")
+        print(f"Tails: {tails} times ({tails_percentage:.2f}%)")
+        
+        # Ask the user if they want to repeat the toss
+        again = input("\nWould you like to toss again? (yes/no): ").strip().lower()
+        if again != 'yes':
+            print("Thank you for playing the coin toss game!")
+            break
+
+# Run the game
+coin_flip_game()
