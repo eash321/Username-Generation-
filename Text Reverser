@@ -1,0 +1,58 @@
+def reverse_characters(text):
+    return text[::-1]
+
+def reverse_words(text):
+    words = text.split()
+    return ' '.join(reversed(words))
+
+def save_to_file(text, filename="reversed_text.txt"):
+    with open(filename, "w") as file:
+        file.write(text)
+
+def main():
+    print("Yo, welcome to the Reverse Flex Program 💯")
+    while True:
+        print("\nChoose an option:")
+        print("1. Reverse characters (Glow-up style!)")
+        print("2. Reverse word order (Switch it up!)")
+        print("3. Save reversed text to a file (Flex forever!)")
+        print("4. Exit (You outta here?)")
+
+        choice = input("Enter your choice (1/2/3/4): ").strip()
+
+        if choice == '1' or choice == '2':
+            text = input("Bet! Now, enter the text you want to reverse: ")
+            if not text:
+                print("Bruh, you gotta enter something! Try again.")
+                continue
+
+            if choice == '1':
+                result = reverse_characters(text)
+                print(f"Here's your character glow-up: {result}")
+            elif choice == '2':
+                result = reverse_words(text)
+                print(f"Here’s the switched-up version: {result}")
+            
+            # Ask if they want to save it
+            save_option = input("Wanna save this reversed text to a file? (y/n): ").strip().lower()
+            if save_option == 'y':
+                save_to_file(result)
+                print("Ayy, your text is saved! Flex forever! 🔥")
+        
+        elif choice == '3':
+            text = input("Enter the text to save (it’ll be saved as a file): ")
+            if not text:
+                print("Bruh, no text? No save. Try again.")
+                continue
+            save_to_file(text)
+            print("Text saved to file. You’re all set! 💾")
+        
+        elif choice == '4':
+            print("Aight, peace out! Catch ya later! ✌️")
+            break
+        
+        else:
+            print("Yo, that’s not an option. Try again with 1, 2, 3, or 4.")
+
+if __name__ == "__main__":
+    main()
